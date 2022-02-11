@@ -1,2 +1,13 @@
-<h1>TP TodoList</h1>
+<input class="todoName" placeholder="Faire du shopping, courses 🚀">
+<div class="input-container">
+    <form (submit)="onSubmit(data)">
+        <input type="text" #data placeholder="Ajouter une nouvelle tâche"/>
+    </form>
+</div>
 
+
+<ul *ngIf="this.toDoService.observable | async as tds">
+    <li *ngFor="let i of tds.items">
+        <mat-checkbox (change)="updateTask(i)" [checked]="i.isDone" >{{i.label}}</mat-checkbox>
+    </li>
+</ul>

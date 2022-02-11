@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700&family=Work+Sans:wght@500&display=swap');
+
+$bgInputColor : #F1F2F8;
+h1{
+    font-family: 'Work Sans';
+}
+
+.input-container{
+    margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.todoName{
+    font-family: 'Work Sans';
+    font-size: 34px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+}
+input{
+
+    padding: 20px;
+    background-color: #E4DCFD;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Work Sans';
+    font-size: 20px;
+    border: 0px;
+    outline: none;
+    
+}
+
+li{
+    background-color: #F9F9F9;
+    padding: 20px;
+    list-style: none;
+    border-radius: 10px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+}
+
+
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background,
+::ng-deep .mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: black !important;
+}
+
+::ng-deep .mat-checkbox-label {
+    font-family: 'Work Sans';
+    font-size: 18px;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-label {
+    text-decoration: line-through;
+    
+}
