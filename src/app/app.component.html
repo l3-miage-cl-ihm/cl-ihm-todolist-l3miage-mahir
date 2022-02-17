@@ -7,7 +7,20 @@
 
 
 <ul *ngIf="this.toDoService.observable | async as tds">
-    <li *ngFor="let i of tds.items">
-        <mat-checkbox (change)="updateTask(i)" [checked]="i.isDone" >{{i.label}}</mat-checkbox>
+    <li class="li-todo" *ngFor="let item of tds.items">
+        <mat-checkbox  (change)="updateDoneValue(item, checkbox.checked)" #checkbox [checked]="item.isDone" >{{item.label}}</mat-checkbox>
+        <div class="error-btn" (click)="removeItem(item)">
+            <img class="trash" src="../assets/ic-trash.svg"/>
+        </div>
+        <div (click)="openDialogEditItem(item)" class="edit-btn">
+            <img class="trash" src="../assets/ic-edit.svg"/>
+        </div>
     </li>
 </ul>
+
+
+<div class="history-container">
+    <div (click)="undoClick()" class="btn-container"*ngIf="this.canUndo"><img class="undo" src="../assets/ic-arrow.svg"/></div>
+    <div class="btn-container" > <img class="upload" src="../assets/ic-upload.svg"/></div>
+    <div (click)="redoClick()" class="btn-container" *ngIf="this.canRedo"><img class="redo" src="../assets/ic-arrow.svg"/></div>
+</div>

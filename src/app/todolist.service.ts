@@ -22,6 +22,8 @@ export class TodolistService {
   readonly observable = this.subj.asObservable();
 
   constructor() {
+
+    this.retrieveLocalData();
   }
 
   create(...labels: readonly string[]): this {
@@ -48,16 +50,39 @@ export class TodolistService {
   }
 
   update(data: Partial<TodoItem>, ...items: readonly TodoItem[]): this {
+    
     if(data.label !== "") {
+      
       const L = this.subj.value;
       this.subj.next( {
         ...L,
         items: L.items.map( item => items.indexOf(item) >= 0 ? {...item, ...data} : item )
+        
       } );
     } else {
+
       this.delete(...items);
+      
     }
     return this;
   }
+
+  private retrieveLocalData(){
+    console.log("Récupération des données sauvegardées en local")
+    let myLocalData = sessionStorage.getItem("todoList") as string;
+    
+    let myLocalTodoList: TodoList = JSON.parse(myLocalData);
+
+    if(myLocalTodoList)
+      this.subj.next(myLocalTodoList);
+    
+  }
+
+  updateTodoList(todoList: TodoList){
+    if(todoList)
+      this.subj.next(todoList);
+  }
+
+  
 
 }

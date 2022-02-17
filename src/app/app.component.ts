@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { tap } from 'rxjs';
+import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
+import { HistoryService } from './history.service';
 import { TodoItem, TodoList, TodolistService } from './todolist.service';
 
 @Component({
@@ -10,50 +13,76 @@ import { TodoItem, TodoList, TodolistService } from './todolist.service';
 export class AppComponent {
   title = 'l3m-tpX-todolist-angular-y2022';
 
-  
+  canUndo = false;
+  canRedo = false;
 
-  constructor(public toDoService: TodolistService){
+  constructor(public toDoService: TodolistService, public historyService: HistoryService,
+    public dialog: MatDialog){
+
     toDoService.observable.subscribe(obs =>{
+
       this.saveDataLocally(obs);
+      
+      obs.items.map(e =>console.log(e));
+      this.canRedo = this.historyService.checkIfICanRedo();
+      this.canUndo = this.historyService.checkIfICanUndo();
       
     });
     
-    this.retrieveLocalData();
   }
 
   private saveDataLocally(todoList: TodoList): void{
     console.log("Sauvegarde locale de la todoList");
-    console.log("Obtention en json: "+ JSON.stringify(todoList));
-    localStorage.removeItem("todoList");
-    localStorage.setItem("todoList", JSON.stringify(todoList));
+    sessionStorage.setItem("todoList", JSON.stringify(todoList));
+    this.historyService.push(todoList);
   }
 
-  private retrieveLocalData(){
+  undoClick(){
+    //this.toDoService.updateTodoList(this.historyService.undo());
+  }
+  
+  redoClick(){
+    //this.toDoService.updateTodoList(this.historyService.redo());
 
-    console.log("Récupération des données sauvegardées en local")
-    let myLocalData = localStorage.getItem("todoList") as string;
-    let myLocalTodoList: TodoList = JSON.parse(myLocalData);
-    console.log("Mes données local en string : " +myLocalData);
-    console.log("items: " + myLocalTodoList.items);
-    console.log("label: " + myLocalTodoList.label);
+  }
 
-    
-    this.toDoService.observable.pipe(tap(todoList => {
-      todoList = myLocalTodoList;
-    }));
-    
+  openDialogEditItem(item :TodoItem){
+
+    const dialogRef = this.dialog.open(EditItemDialogComponent, {
+      width: '350px',
+      data: item.label,
+    });
+
+    dialogRef.afterClosed().subscribe((result: string) => {
+      console.log('The dialog was closed');
+      console.log("result: " + result);
+      if(result !== undefined){
+      let newItem = {label: result, isDone: item.isDone} as TodoItem;
+      this.toDoService.update(newItem, item); 
+      }
+
+    });
   }
 
   onSubmit(task: HTMLInputElement) {
     console.log(task.value);
     //Ajout d'une nouvelle task
-    let newTask = this.toDoService.create(task.value);
+    this.toDoService.create(task.value);
     task.value = "";
 
   }
-  updateTask(task: TodoItem){
-    this.toDoService.update(task);    
+  updateDoneValue(task: TodoItem, checked: boolean){
+    let item = {label: task.label, isDone: checked} as TodoItem;
+
+    console.log(item.isDone);
+    this.toDoService.update(item, task); 
+  }
+
+  removeItem(task: TodoItem){
+    this.toDoService.delete(task)
   }
 }
+
+
 
 
