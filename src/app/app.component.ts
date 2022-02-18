@@ -21,11 +21,11 @@ export class AppComponent {
 
     toDoService.observable.subscribe(obs =>{
 
-      this.saveDataLocally(obs);
+      //this.saveDataLocally(obs);
       
-      obs.items.map(e =>console.log(e));
-      this.canRedo = this.historyService.checkIfICanRedo();
-      this.canUndo = this.historyService.checkIfICanUndo();
+      //obs.items.map(e =>console.log(e));
+      //this.canRedo = this.historyService.checkIfICanRedo();
+      //this.canUndo = this.historyService.checkIfICanUndo();
       
     });
     

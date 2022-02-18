@@ -10,13 +10,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoItemComponent } from './todo-item/todo-item.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EditItemDialogComponent
+    EditItemDialogComponent,
+    TodoListComponent,
+    TodoItemComponent
   ],
   imports: [
     BrowserModule,

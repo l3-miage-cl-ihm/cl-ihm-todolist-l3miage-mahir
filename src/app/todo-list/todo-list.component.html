@@ -1,0 +1,20 @@
+<input class="todoName" placeholder="Faire du shopping, courses 🚀">
+<div class="input-container">
+    <form (submit)="onSubmit(data)">
+        <input type="text" #data placeholder="Ajouter une nouvelle tâche"/>
+    </form>
+</div>
+
+
+<ul *ngIf="this.toDoService.observable | async as tds">
+    <li class="li-todo" *ngFor="let item of tds.items">
+        <app-todo-item [item]="item" (update)="updateItem($event, item)" (remove)="removeItem($event)"></app-todo-item>
+    </li>
+</ul>
+<div>
+<button mat-button *ngIf="canUndo" (click)="clickUndo()">Undo</button>
+<button mat-button *ngIf="canRedo" (click)="clickRedo()">Redo</button>  
+<button mat-button>Push</button>
+</div>
+
+

@@ -1,0 +1,9 @@
+<div class="matcheckbox">
+<mat-checkbox   (change)="updateDoneValue(item, checkbox.checked)" #checkbox [checked]="item.isDone" >{{item.label}}</mat-checkbox>
+<div class="error-btn" (click)="removeItem(item)">
+    <img class="trash" src="../assets/ic-trash.svg"/>
+</div>
+<div (click)="openDialogEditItem(item)" class="edit-btn">
+    <img class="trash" src="../assets/ic-edit.svg"/>
+</div>
+</div>

@@ -21,46 +21,27 @@ export class HistoryService {
 
   }
 
-
-
   undo(): TodoList{
-    
-    let newCurrentTodo: TodoList = {label: 'L3 MIAGE', items: [] };
-    if(this.checkIfICanUndo()){
-      //Récupérer toutes les datas précédentes.
-      let lastHistory: TodoList[] = [];
-      let lastCurrentIndex = 0;
-      this.subj.subscribe(obs => {
-        lastHistory = obs.history
-        lastCurrentIndex = obs.currentIndex;
-        newCurrentTodo = obs.history[lastCurrentIndex - 1];
-      }).unsubscribe();
-
-      //Ajouter les datas précentes 
-      let history: History<TodoList> = {canUndo: this.checkIfICanUndo(), canRedo: this.checkIfICanRedo(), history: lastHistory,currentIndex: lastCurrentIndex, current: newCurrentTodo };
-      this.subj.next(history);
-      return newCurrentTodo;
+    let todo: TodoList = {label: 'L3 MIAGE', items: [] };
+    this.subj.subscribe(obs =>{
+      obs.currentIndex--;
+      obs.current = obs.history[obs.currentIndex]
+      todo = obs.current;
     }
-    return newCurrentTodo;
+    ).unsubscribe();
+    return todo;
   }
 
   redo(): TodoList{
-    let newCurrentTodo: TodoList = {label: 'L3 MIAGE', items: [] };
-    if(this.checkIfICanUndo()){
-      //Récupérer toutes les datas précédentes.
-      let lastHistory: TodoList[] = [];
-      let lastCurrentIndex = 0;
-      this.subj.subscribe(obs => {
-        lastHistory = obs.history
-        lastCurrentIndex = obs.currentIndex;
-        newCurrentTodo = obs.history[lastCurrentIndex + 1];
-      }).unsubscribe();
-
-      //Ajouter les datas précentes 
-      let history: History<TodoList> = {canUndo: this.checkIfICanUndo(), canRedo: this.checkIfICanRedo(), history: lastHistory,currentIndex: lastCurrentIndex, current: newCurrentTodo };
-      this.subj.next(history);
+    let todo: TodoList = {label: 'L3 MIAGE', items: [] };
+    this.subj.subscribe(obs =>{
+      obs.currentIndex++;
+      obs.current = obs.history[obs.currentIndex]
+      todo = obs.current;
+      
     }
-    return newCurrentTodo;
+    );
+    return todo;
   }
 
   /**
@@ -68,34 +49,32 @@ export class HistoryService {
    *  Supprimer toutes les datas supérieur à l'index courant.
    **/
   push(todoList: TodoList){
-    
-    this.subj.subscribe(obs =>
-        obs.history.filter((_, index) => index > obs.currentIndex)
-    );
     this.subj.subscribe(obs=> {
-      
+      console.log("J'ajoute une todo dans mon history");
       obs.history.push(todoList);
-      obs.currentIndex = obs.currentIndex+1;
+      obs.currentIndex = obs.currentIndex++;
       obs.current = todoList;
-      
     }).unsubscribe;
   }
 
   checkIfICanUndo(): boolean{
+
     let canUndo = false;
-    this.subj.subscribe((obs)=>{
-    canUndo = obs.currentIndex !== obs.history.length-1;
-     console.log("can undo: "+ obs.history.length);
-  }).unsubscribe;
-    console.log("can undo: "+canUndo);
-    
+    this.subj.subscribe(obs=> {
+      if(obs.history.length > 0){
+        canUndo = true;
+      }
+    }).unsubscribe;
     return canUndo;
   }
 
   checkIfICanRedo(): boolean{
     let canRedo = false;
-    this.subj.subscribe((obs)=>
-    canRedo = obs.currentIndex !== 0).unsubscribe;
+    this.subj.subscribe(obs=> {
+      if(obs.history.length > 0 && obs.currentIndex !== obs.history.length){
+        canRedo = true;
+      }
+    }).unsubscribe;
     return canRedo;
   }
 }
