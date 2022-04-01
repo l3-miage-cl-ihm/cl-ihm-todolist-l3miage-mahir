@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 export interface TodoItem {
@@ -8,7 +9,10 @@ export interface TodoItem {
 }
 
 export interface TodoList {
+  readonly id: string;
   readonly label: string;
+  readonly description: string;
+  readonly emoji: string;
   readonly items: readonly TodoItem[];
 }
 
@@ -18,12 +22,10 @@ let idItem = 0;
   providedIn: 'root'
 })
 export class TodolistService {
-  private subj = new BehaviorSubject<TodoList>({label: 'L3 MIAGE', items: [] });
+  private subj = new BehaviorSubject<TodoList>({id:"", label: 'L3 MIAGE',  description: 'Pour les L3 MIAGE est pas plus=', emoji: '😊', items: [] });
   readonly observable = this.subj.asObservable();
 
-  constructor() {
-
-    this.retrieveLocalData();
+  constructor(public afs: AngularFirestore) {
   }
 
   create(...labels: readonly string[]): this {
@@ -37,6 +39,7 @@ export class TodolistService {
           )
       ]
     } );
+    //this.afs.doc<TodoList>("tasks/"+L.id).set(L, {merge: true});
     return this;
   }
 
@@ -46,43 +49,46 @@ export class TodolistService {
       ...L,
       items: L.items.filter(item => items.indexOf(item) === -1 )
     } );
+    //this.afs.doc<TodoList>("tasks/"+L.id).set(L, {merge: true});
+
     return this;
   }
 
   update(data: Partial<TodoItem>, ...items: readonly TodoItem[]): this {
     
     if(data.label !== "") {
-      
       const L = this.subj.value;
       this.subj.next( {
         ...L,
         items: L.items.map( item => items.indexOf(item) >= 0 ? {...item, ...data} : item )
         
       } );
-    } else {
+      //this.afs.doc<TodoList>("tasks/"+L.id).set(L, {merge: true});
 
+    } else {
       this.delete(...items);
-      
     }
+
+    
     return this;
   }
 
-  private retrieveLocalData(){
-    console.log("Récupération des données sauvegardées en local")
-    let myLocalData = sessionStorage.getItem("todoList") as string;
-    
-    let myLocalTodoList: TodoList = JSON.parse(myLocalData);
 
-    if(myLocalTodoList)
-      this.subj.next(myLocalTodoList);
-    
+  updateLabel(label: string){
+    const L = this.subj.value;
+    this.subj.next( {
+      ...L,
+      label: label
+    } );
+
   }
-
   updateTodoList(todoList: TodoList){
-    if(todoList)
-      this.subj.next(todoList);
+    this.subj.next(todoList);
+        
+    console.log("Ajout de la todolist push !");
   }
 
+ 
   
 
 }

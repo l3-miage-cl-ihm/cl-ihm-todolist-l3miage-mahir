@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "l3m-tpX-todolist-angular-y2022": {
+    "todo-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/l3m-tp-x-todolist-angular-y2022",
+            "outputPath": "dist/todo-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "l3m-tpX-todolist-angular-y2022:build:production"
+              "browserTarget": "todo-app:build:production"
             },
             "development": {
-              "browserTarget": "l3m-tpX-todolist-angular-y2022:build:development"
+              "browserTarget": "todo-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "l3m-tpX-todolist-angular-y2022:build"
+            "browserTarget": "todo-app:build"
           }
         },
         "test": {
@@ -109,5 +109,5 @@
       }
     }
   },
-  "defaultProject": "l3m-tpX-todolist-angular-y2022"
+  "defaultProject": "todo-app"
 }

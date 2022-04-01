@@ -1,0 +1,82 @@
+<div class="todolist-container">
+    
+    <div class="sidebar" *ngIf="this.todoObs| async as tdl">
+        <div class="sidebar-brand">
+            <img class="sidebar-brand-img" src="../../../assets/todonow-brand.svg">
+            <p class="sidebar-brand-text">todonow</p>
+        </div>
+
+        <div class="sidebar-profile">
+            <p class="sidebar-section-text">Mon profil</p>
+            <div class="sidebar-profile-info">
+                <img class="sidebar-profile-photo" src="{{this.user.photoURL}}">
+                <div class="sidebar-profile-info-user">
+                    <p class="sidebar-profile-info-user-name">{{user.displayName}}</p>
+                    <p class="sidebar-profile-info-user-edit">Editer mon profil</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="sidebar-todolists" *ngIf="obsAllLists | async as todolists">
+            <p class="sidebar-section-text">Mes listes de choses à faire</p>
+
+            <div class="sidebar-todolist" 
+            *ngFor="let todolist of allUserTodolists" 
+            
+            [class.isSelected]="tdl.id === todolist.id"
+            routerLink="/{{todolist.id}}">
+                <p class="sidebar-todolist-title">{{todolist.emoji}} {{todolist.label}}</p>
+            </div>
+
+            <div class="sidebar-todolist">
+                <p (click)="openCreateTodoListDialog()" class="sidebar-todolist-title" >➕ Créer une nouvelle todolist</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="todolist-container"  *ngIf="this.todoObs| async as todolist">
+        <div class="todolist-nav-history" >
+            <div class="todolist-nav-history-container" (click)="hs.undo()" >
+                <img class="ic-navigation" src="../../../assets/arrow-left.svg">
+            </div>
+            <div class="todolist-nav-history-container" (click)="hs.redo()">
+                <img class="ic-navigation" src="../../../assets/arrow-right.svg">
+            </div>
+            <div class="todolist-nav-history-container" (click)="hs.push(todolist);pushOnDb(todolist);">
+                <img class="ic-navigation" src="../../../assets/push.svg">
+            </div>
+        </div>
+        <div class="todolist-header">
+            <p class="todolist-header-emoji">{{todolist.emoji}}</p>
+            <p class="todolist-header-title">{{todolist.label}}</p>
+            <p class="todolist-header-description">{{todolist.description}}</p>
+            <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+        </div>
+
+        <form  class="todo-form" (submit)="tds.create(newTask.value); newTask.value = '';">
+            <mat-form-field  appearance="outline">
+                <mat-label>Ecrivez votre tâche</mat-label>
+                <input matInput #newTask placeholder="Ecrivez votre tâche">
+            </mat-form-field>
+        </form>
+
+        <mat-tab-group (selectedIndexChange)="onFilterChanged($event)">
+            <mat-tab label="Toutes les tâches"></mat-tab>
+            <mat-tab label="À faire"></mat-tab>
+            <mat-tab label="Déjà faites"></mat-tab>   
+        </mat-tab-group>
+
+        <div class="todolist-task-container">
+            <ng-scrollbar class="virtual-scroll" thumbClass="white-scrollbars">
+                <ul >
+                    <li *ngFor="let task of todolist.displayedItems">
+                        <app-todo-item [item]="task" (update)="this.tds.update($event, task)" (remove)="this.tds.delete($event, task)"></app-todo-item>
+                    </li>
+                </ul>
+            </ng-scrollbar>
+        </div>
+        
+    </div>
+
+</div>

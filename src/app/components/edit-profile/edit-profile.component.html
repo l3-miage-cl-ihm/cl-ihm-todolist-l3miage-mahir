@@ -1,0 +1,57 @@
+<div class="todolist-container">
+    
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <img class="sidebar-brand-img" src="../../../assets/todonow-brand.svg">
+            <p class="sidebar-brand-text">todonow</p>
+        </div>
+
+        <div class="sidebar-profile">
+            <p class="sidebar-section-text">Mon profil</p>
+            <div class="sidebar-profile-info">
+                <img class="sidebar-profile-photo" src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60">
+                <div class="sidebar-profile-info-user">
+                    <p class="sidebar-profile-info-user-name">Username</p>
+                    <p class="sidebar-profile-info-user-edit" routerLink="/edit-profile" >Editer mon profil</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-todolists">
+            <p class="sidebar-section-text">Mes listes de choses à faire</p>
+
+            <div class="sidebar-todolist">
+                <p class="sidebar-todolist-title" >🛒 Faire des cdkjsk jfsdhf khsjdfkj ourses</p>
+            </div>
+
+            <div class="sidebar-todolist">
+                <p class="sidebar-todolist-title" >➕ Créer une nouvelle todolist</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="create-container">
+        <h2>Editez votre profil</h2>
+
+        <img class="profile-photo" src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHByb2ZpbGUlMjBwaG90b3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"/>
+        <label class="image-upload-container btn btn-bwm">
+            <p class="change-profile-photo">Changer ma photo de profil</p>
+            <input #imageInput
+                    class="input-import"
+                   type="file"
+                   accept="image/*">
+          </label>
+        <form class="create-form ">
+            <mat-form-field appearance="outline">
+                <mat-label>Nom utilisateur</mat-label>
+                <input matInput placeholder="Nom utilisateur">
+            </mat-form-field>
+        </form>
+
+        <button class="create-button">Save</button>
+
+        <p class="sign-out" (click)="openSignIn()"> Se déconnecter </p>
+        
+    </div>
+
+</div>

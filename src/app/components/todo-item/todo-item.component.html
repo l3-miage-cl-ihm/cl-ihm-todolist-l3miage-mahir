@@ -1,0 +1,9 @@
+<div class="todo">
+        <input type="checkbox" [checked]="item.isDone" #checkbox (change)="updateDoneValue(item, checkbox.checked)"/>
+        <label class="todo-label" for="checkbox">
+            <form (submit)="updateLabel(item, todoInput.value)">
+                <input class="todo-input" #todoInput value="{{item.label}}">
+            </form>
+        </label>
+    <img class="todo-cross" src="../../../assets/ic-cross.svg" (click)="removeItem(item)">
+</div>

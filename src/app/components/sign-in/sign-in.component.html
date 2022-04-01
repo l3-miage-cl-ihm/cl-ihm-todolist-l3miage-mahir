@@ -1,0 +1,33 @@
+<div class="sign-in-container">
+    <h2>Se connecter</h2>
+    <div class="login-with-google" (click)="auth.GoogleAuth(); dialogRef.close()">
+        <img class="google-logo" src="../../../assets/logo-google.svg"> 
+        <p class="login-google-text">Se connecter avec Google</p>
+    </div>
+    <form class="create-form ">
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                placeholder="Ex. pat@example.com">
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Entrez votre mot de passe</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+
+    <button class="create-button">C'est partie !</button>
+
+    
+    
+</div>

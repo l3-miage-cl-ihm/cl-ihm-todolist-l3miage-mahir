@@ -1,0 +1,122 @@
+$primary: #FF3EC2;
+$background: #322960;
+$input: #473171;
+$placeholder: #8988B7;
+
+
+h2{
+    color: white;
+}
+.sign-in-container{
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: $background;
+}
+.create-form{
+    margin-top: 20px;
+}
+::ng-deep .create-form {
+           
+            
+    .mat-form-field-label {
+      /*change color of label when focused*/
+      color: $placeholder !important;
+    }
+
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        background-color: $input;
+        border-radius: 5px;
+    }
+
+    .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+        color: $placeholder;
+      }
+    .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline {
+        border: 0.2px solid $placeholder;
+        opacity: 1;
+    
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-gap,
+        .mat-form-field-outline-end {
+            border: none;
+    }
+
+}
+
+}
+
+mat-form-field {
+    width: 100%;
+    color: white;
+
+}
+
+.create-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 50px;
+    background: linear-gradient(240.28deg, #F571D2 13.42%, #C628AA 80.47%);
+    font-family: "Work Sans";
+    border: none;
+    font-size: 18px;
+    color: white;
+    font-weight: 400;
+}
+
+.backdropBackground{
+    background: $background;
+    backdrop-filter: blur(104px);
+}
+
+.login-with-google{
+    display: flex;
+    height: 40px;
+    background-color: white;
+    border-radius: 6px;
+    margin-top: 20px;
+
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    &::after{
+        content: "";
+        border-radius: 5px;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    &:hover {
+        -webkit-transform: scale( 1.05,  1.05);
+        transform: scale( 1.05, 1.05);
+    }
+    &:hover::after {
+        opacity: 1;
+    }
+
+}
+
+.login-google-text{
+    height: 40px;
+    color: black;
+    margin-left: 20px;
+
+    margin-top: 0;
+    padding-top: 0;
+    position: relative;
+    top: 25%;
+    align-items: center;
+
+    
+}

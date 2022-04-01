@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TodolistService } from './todolist.service';
+import { FirestoreService } from './firestore.service';
 
-describe('TodolistService', () => {
-  let service: TodolistService;
+describe('FirestoreService', () => {
+  let service: FirestoreService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TodolistService);
+    service = TestBed.inject(FirestoreService);
   });
 
   it('should be created', () => {

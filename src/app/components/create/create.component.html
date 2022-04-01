@@ -1,0 +1,28 @@
+
+<div class="create-container">
+    <h2>Créez votre todolist</h2>
+    <div class="create-emoji-container">
+        <i class='attachment'
+        (click)="toggled = !toggled"
+        [(emojiPickerIf)]="toggled"
+        [emojiPickerDirection]="'top'"
+        (emojiPickerSelect)="handleSelection($event)">{{this.message}}</i>
+    </div>
+
+    
+
+    <form class="create-form " (submit)="creerTodoList(nom.value, desc.value)">
+        <mat-form-field appearance="outline">
+            <mat-label>Entrez le nom de la todolist</mat-label>
+            <input #nom matInput placeholder="Entrez le nom de la todolist" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+        <mat-label>Décrivez votre tache à faire</mat-label>
+        <input #desc matInput placeholder="Décrivez votre tache à faire" required>
+        </mat-form-field>
+    </form>
+
+    <button class="create-button" (click)="creerTodoList(nom.value, desc.value)">Créer</button>
+    
+</div>

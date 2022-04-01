@@ -1,0 +1,310 @@
+$primary: #FF3EC2;
+$background: #322960;
+$input: #473171;
+$placeholder: #8988B7;
+
+html, body{
+    background: linear-gradient(180deg, #3B2D66 0%, #1A193B 100%) !important;
+    background-color: linear-gradient(180deg, #3B2D66 0%, #1A193B 100%) !important;
+}
+
+.todolist-container{
+    display: flex;
+    height: 100%;
+
+
+    .sidebar{
+        display: block;
+        width: 40vh;
+        height: 100%;
+        background-color: $background;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        
+
+        .sidebar-brand{
+            display: flex;
+            justify-content: flex-start;
+            padding-left: 10px;
+            .sidebar-brand-img{
+                width: 35px;
+                display: block;
+            }
+
+            .sidebar-brand-text{
+                display: block;
+                margin-left: 15px;
+                font-size: 22px;
+                font-weight: 600;
+            }
+        }
+        .sidebar-profile{
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-top: 0px;
+        }
+        .sidebar-profile-photo{
+            width: 50px;
+            height: 50px;
+            border-radius: 20px;
+            object-fit: cover;
+            top: 50%;
+        }
+
+        .sidebar-profile-info{
+            height: 66px ;
+            display: flex;
+            align-items: center;    
+        }
+        .sidebar-profile-info-user{
+            display: inline-block;
+            margin-left: 10px;
+
+            .sidebar-profile-info-user-name{
+                line-height: 10px;
+            }
+            .sidebar-profile-info-user-edit{
+                color: $placeholder;
+                font-size: 14px;
+                line-height: 10px;
+            }
+        }
+
+        .sidebar-todolists{
+            padding-left: 10px;
+            padding-right: 10px;
+
+            
+            .sidebar-todolist{
+                width: 100%;
+                height: 30px;
+                padding-top: 8px;
+                display: flex;
+                align-items: center;
+                padding-bottom: 8px;
+                background-color: $background;
+
+                .sidebar-todolist-title{
+                    font-weight: 400;
+                    color: white;
+                    margin-left: 10px;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    -webkit-line-clamp: 1; /* number of lines to show */
+                            line-clamp: 1; 
+                    -webkit-box-orient: vertical;
+                }
+                &:hover{
+                cursor:pointer;
+                    background-color: $input; 
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .sidebar-section-text{
+            line-height: 10px;
+            margin-bottom: 0px;
+            padding-bottom: 12px;
+            font-weight: 600;
+        }
+    }
+
+    .todolist-container{
+        width: 100%;
+        height: 100%;
+        display: block;
+
+        .todolist-header{
+            width: 90%;
+            margin-top: 10px;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            background: $input;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            padding-bottom: 20px;
+
+
+            .todolist-header-emoji{
+                margin-left: 20px;
+                font-size: 50px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .todolist-header-title{
+                margin-left: 24px;
+                font-size: 20px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-weight: 500;
+            }
+            .todolist-header-description{
+                margin-left: 24px;
+                font-size: 18px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                font-weight: 400;
+            }
+            mat-progress-bar{
+                width: 95%;
+
+                margin-top: 1%;
+                margin-left: 24px;
+                margin-right: 24px;
+
+                ::ng-deep .mat-progress-bar-fill::after {
+                    background-color: $primary;
+                }
+                
+                ::ng-deep .mat-progress-bar-buffer {
+                    background: $placeholder;
+
+                }
+                
+            }
+
+           
+
+
+        }
+
+        .todolist-task-container{
+            display: block;
+        }
+        ::ng-deep .todo-form {
+           margin-left: 5%;
+            
+           margin-top: 10px;
+            .mat-form-field-label {
+              /*change color of label when focused*/
+              color: $placeholder !important;
+            }
+
+            ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+                background-color: $input;
+                border-radius: 5px;            
+
+            }
+
+            ::ng-deep .mat-form-field-infix {
+                width: 100%;
+            }
+            .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+                color: $placeholder;
+              }
+            .mat-form-field-appearance-outline:not(.mat-form-field-disabled) .mat-form-field-flex:hover .mat-form-field-outline {
+                border: 0.2px solid $placeholder;
+                opacity: 1;
+        
+                .mat-form-field-outline-start,
+                .mat-form-field-outline-gap,
+                .mat-form-field-outline-end {
+                    border: none;
+                }
+
+            }
+        }
+        mat-form-field{
+            width: 95%;
+        }
+
+        /* active tab */
+
+
+        mat-tab-group{
+            margin-left: 5%;
+        }
+    ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label-active {
+        color:white;
+        background-color: $input;
+        border-radius: 50px;
+        font-size: 15px;
+    }
+    
+    /* ink bar */
+    ::ng-deep .mat-ink-bar {
+    background-color: transparent !important;
+    }
+    /* header */
+    ::ng-deep.mat-tab-group .mat-tab-header, .mat-tab-nav-bar .mat-tab-header{
+        border-bottom: none;
+    }
+    
+    /* ink bar style */
+    ::ng-deep.mat-tab-group .mat-ink-bar, .mat-tab-nav-bar .mat-ink-bar{
+    display: none !important;
+    }
+
+    ::ng-deep.mat-tab-label{
+        color: white;
+        opacity: 1;
+    }
+
+    
+      
+            
+    }
+
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 0px;
+}
+
+:host {
+    ::ng-deep {
+      ng-scrollbar.virtual-scroll {
+        --scrollbar-size: 8px;
+        --scrollbar-thumb-color: gray;
+        --scrollbar-hover-size: 12px;
+        --scrollbar-track-color: rgba(0, 0, 0, 0.05);
+        --scrollbar-border-radius: 10px;
+    
+        position: relative;
+        margin-top: 10px;
+        height: 52vh;
+        max-height: 100%;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .todolist-nav-history{
+    display: flex;
+    align-items: center;
+    
+    gap: 10px;
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+
+  .todolist-nav-history-container{
+    display: block;
+    background-color: $input;
+    border-radius: 8px;
+    width: 35px;
+    height: 35px;
+
+    &:hover{
+        background-color: #674F96;
+        cursor: pointer;
+    }
+  }
+
+  .ic-navigation{
+      color: white;
+      width: 35px;
+      height: 35px;
+  }
+
+  .disabled{
+      opacity: 0.3;
+  }
+  .isSelected{
+    background-color: #674F96;
+    background-color: $input !important; 
+    border-radius: 5px;
+
+  }

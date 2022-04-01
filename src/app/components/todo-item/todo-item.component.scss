@@ -1,0 +1,87 @@
+$primary: #FF3EC2;
+$background: #322960;
+$input: #473171;
+$placeholder: #8988B7;
+
+.todo{
+    display: flex;
+    align-items: center;
+    margin-right: 5%;
+    height: 45px;
+    &:hover .todo-cross{
+      visibility: visible;
+    }
+}
+
+  
+  .todo-input{
+    height: 28px;
+    display: block;
+    background: $background;
+    background-color: transparent;
+    border: 0px solid;
+    &:focus {
+        outline: none;
+    }
+    font-family: "Work Sans";
+    font-size: 16px;
+    color: white;
+  }
+  form{
+      display: block;
+  }
+  .todo-cross{
+    position: absolute;
+    right: 5%;
+    opacity: 0.8;
+    width: 35px;
+    visibility: hidden;
+    
+    
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    position: relative;
+    visibility: hidden;
+  }
+  input[type="checkbox"]:after {
+    border: 2px solid $placeholder;
+    border-radius: 50%;;
+    content: "";
+    margin-top: -10px;
+    display: block;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    visibility: visible;
+    transition: all 100ms ease-in-out;
+    background-color: $background;
+  }
+  input[type="checkbox"]:checked:after {
+    border: 3px solid $placeholder;
+    color: white;
+    font-size: 28px;
+    border-radius: 50%;
+    //content: "✘";
+    content: "✓";
+
+    line-height: 30px;
+    background-color: $placeholder;
+    animation: bounce 300ms ease-in-out forwards;
+  }
+  input[type="checkbox"][type=checkbox]:checked ~ label {
+    text-decoration: line-through;
+  }
+  
+  @keyframes bounce {
+    0% {transform: scale(1, 1);}
+    70% {transform: scale(1.1, 1.1);}
+    100% {transform: scale(1, 1);}
+  }
+  label {
+    position: relative;
+    left: 40px;
+  }
+
+  
