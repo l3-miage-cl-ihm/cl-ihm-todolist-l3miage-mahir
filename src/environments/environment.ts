@@ -6,7 +6,8 @@
 import 'firebase/auth';
 import 'firebase/firestore';
 export const environment = {
-  production: false,
+  production: true,
+
   firebaseConfig : {
     apiKey: "AIzaSyDsxb0nCFcClrNAsGyOlyyYHDNJ7uVpnwU",
     authDomain: "todolistapp-39f3b.firebaseapp.com",
