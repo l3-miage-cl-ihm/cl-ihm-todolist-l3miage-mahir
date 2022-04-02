@@ -23,9 +23,9 @@
 
             <div class="sidebar-todolist" 
             *ngFor="let todolist of allUserTodolists" 
-            
             [class.isSelected]="tdl.id === todolist.id"
-            routerLink="/{{todolist.id}}">
+            routerLink="/{{todolist.id}}"
+            (click)="progress=0">
                 <p class="sidebar-todolist-title">{{todolist.emoji}} {{todolist.label}}</p>
             </div>
 
@@ -43,18 +43,21 @@
             <div class="todolist-nav-history-container" (click)="hs.redo()">
                 <img class="ic-navigation" src="../../../assets/arrow-right.svg">
             </div>
-            <div class="todolist-nav-history-container" (click)="hs.push(todolist);pushOnDb(todolist);">
+            <div class="todolist-nav-history-container" (click)="hs.push(todolist);">
                 <img class="ic-navigation" src="../../../assets/push.svg">
             </div>
             <div class="todolist-nav-history-container" (click)="displayDraw = !displayDraw">
                 <img class="ic-navigation" src="../../../assets/draw.svg">
+            </div>
+            <div class="todolist-nav-history-container" (click)="openQRCodeDialog(todolist)">
+                <img class="ic-navigation" src="../../../assets/qrcode.svg">
             </div>
         </div>
         <div class="todolist-header">
             <p class="todolist-header-emoji">{{todolist.emoji}}</p>
             <p class="todolist-header-title">{{todolist.label}}</p>
             <p class="todolist-header-description">{{todolist.description}}</p>
-            <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+            <mat-progress-bar mode="determinate" value="{{progress}}"></mat-progress-bar>
         </div>
 
         <form *ngIf="displayDraw === false" class="todo-form" (submit)="tds.create(newTask.value); newTask.value = '';">

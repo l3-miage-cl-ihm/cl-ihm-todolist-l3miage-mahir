@@ -6,9 +6,13 @@ $placeholder: #8988B7;
 html, body{
     background: linear-gradient(180deg, #3B2D66 0%, #1A193B 100%) !important;
     background-color: linear-gradient(180deg, #3B2D66 0%, #1A193B 100%) !important;
+    color: white !important;
+}   
+
+h2{
+    color: white !important;
+
 }
-
-
     .create-container{
         height: 100%;
 
@@ -24,6 +28,7 @@ html, body{
             ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
                 background-color: $input;
                 border-radius: 5px;
+                
             }
 
             .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
@@ -45,6 +50,7 @@ html, body{
 
         mat-form-field {
             width: 100%;
+            color: white !important;
 
         }
 
