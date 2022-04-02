@@ -30,7 +30,7 @@ interface TodoListPlus extends TodoList {
 })
 export class TodolistComponent{
 
-
+  public displayDraw:boolean = false;
   readonly fAll: FctFilter = () => true;
   readonly fCompleted: FctFilter = (item) => item.isDone;
   readonly fActive: FctFilter = (item) => !item.isDone;

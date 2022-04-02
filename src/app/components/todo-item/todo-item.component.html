@@ -1,9 +1,19 @@
-<div class="todo">
+<div class="todo" *ngIf="item.label.substring(0, 14) !== 'data:image/png'">
         <input type="checkbox" [checked]="item.isDone" #checkbox (change)="updateDoneValue(item, checkbox.checked)"/>
         <label class="todo-label" for="checkbox">
             <form (submit)="updateLabel(item, todoInput.value)">
-                <input class="todo-input" #todoInput value="{{item.label}}">
+                <input  class="todo-input" #todoInput value="{{item.label}}">
             </form>
         </label>
     <img class="todo-cross" src="../../../assets/ic-cross.svg" (click)="removeItem(item)">
+</div>
+
+<div id="todoIMG" class="todo" *ngIf="item.label.substring(0, 14) === 'data:image/png'">
+    <input type="checkbox" [checked]="item.isDone" #checkbox (change)="updateDoneValue(item, checkbox.checked)"/>
+    <label class="todo-label" for="checkbox">
+        <form class="drawIMG" (submit)="updateLabel(item, todoInput.src)">
+            <img class="todo-input" #todoInput src="{{item.label}}" alt="">
+        </form>
+    </label>
+<img class="todo-cross" src="../../../assets/ic-cross.svg" (click)="removeItem(item)">
 </div>

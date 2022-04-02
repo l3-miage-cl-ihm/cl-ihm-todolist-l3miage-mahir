@@ -1,0 +1,18 @@
+<div id="btnDiv">
+    <input id="clearCanvasSimple" class="btnCanvas" type="button" (click)="clear()" value="Effacer"/>
+    <input id="exportCanvasSimple" class="btnCanvas" type="button" (click)="exportToIMG()" value="Valider"/>
+</div>
+
+<div class="cadre" id="canvasDiv">
+    <canvas #canvas id="canvas" 
+        (mousedown)="mouseDown($event)" 
+        (mousemove)="mouseMove($event)" 
+        (mouseup)="mouseUp($event)"
+        (mouseleave)="mouseLeave($event)"
+        
+        width="600"
+        height="250">
+    </canvas>
+    <img id="resultIMG" src="" alt="">
+</div>
+

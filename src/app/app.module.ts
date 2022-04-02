@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
+import { DrawComponent } from './components/draw/draw.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
@@ -36,7 +37,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     CreateComponent,
     TodoItemComponent,
     EditProfileComponent,
-    SignInComponent
+    SignInComponent,
+    DrawComponent
   ],
   imports: [
     BrowserModule,

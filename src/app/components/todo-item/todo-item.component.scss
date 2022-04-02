@@ -13,6 +13,13 @@ $placeholder: #8988B7;
     }
 }
 
+#todoIMG {
+  height: fit-content;
+}
+#todoIMG .todo-input {
+  background-color: $background;
+  height: fit-content;
+}
   
   .todo-input{
     height: 28px;

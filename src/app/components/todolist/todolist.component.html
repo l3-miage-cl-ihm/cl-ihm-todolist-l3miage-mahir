@@ -46,6 +46,9 @@
             <div class="todolist-nav-history-container" (click)="hs.push(todolist);pushOnDb(todolist);">
                 <img class="ic-navigation" src="../../../assets/push.svg">
             </div>
+            <div class="todolist-nav-history-container" (click)="displayDraw = !displayDraw">
+                <img class="ic-navigation" src="../../../assets/draw.svg">
+            </div>
         </div>
         <div class="todolist-header">
             <p class="todolist-header-emoji">{{todolist.emoji}}</p>
@@ -54,20 +57,20 @@
             <mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
         </div>
 
-        <form  class="todo-form" (submit)="tds.create(newTask.value); newTask.value = '';">
+        <form *ngIf="displayDraw === false" class="todo-form" (submit)="tds.create(newTask.value); newTask.value = '';">
             <mat-form-field  appearance="outline">
                 <mat-label>Ecrivez votre tâche</mat-label>
                 <input matInput #newTask placeholder="Ecrivez votre tâche">
             </mat-form-field>
         </form>
 
-        <mat-tab-group (selectedIndexChange)="onFilterChanged($event)">
+        <mat-tab-group *ngIf="displayDraw === false" (selectedIndexChange)="onFilterChanged($event)">
             <mat-tab label="Toutes les tâches"></mat-tab>
             <mat-tab label="À faire"></mat-tab>
             <mat-tab label="Déjà faites"></mat-tab>   
         </mat-tab-group>
 
-        <div class="todolist-task-container">
+        <div *ngIf="displayDraw === false" class="todolist-task-container">
             <ng-scrollbar class="virtual-scroll" thumbClass="white-scrollbars">
                 <ul >
                     <li *ngFor="let task of todolist.displayedItems">
@@ -77,6 +80,6 @@
             </ng-scrollbar>
         </div>
         
+        <app-draw *ngIf="displayDraw === true" (update)="this.tds.create($event); displayDraw = !displayDraw"></app-draw>
     </div>
-
 </div>

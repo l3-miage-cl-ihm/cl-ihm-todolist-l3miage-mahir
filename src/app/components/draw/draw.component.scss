@@ -1,0 +1,50 @@
+$primary: #FF3EC2;
+$background: #322960;
+$input: #473171;
+$placeholder: #8988B7;
+
+#canvas, #resultIMG { 
+    border: 1px solid $primary; 
+} 
+
+#canvas { 
+    background-color: $background;
+    margin-top: 25px; 
+
+    &:hover{
+        // cursor: url("../../assets/edit.png"), auto;
+    }
+}
+
+#canvasDiv {
+    text-align: center;
+}
+
+#btnDiv {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.btnCanvas {
+    color: white;
+    background-color: #473171;
+    border-radius: 50px;
+    font-size: 15px;
+    border: 0px;
+    height: 48px;
+    padding: 0 24px;
+    cursor: pointer;
+    box-sizing: border-box;
+    min-width: 160px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    position: relative;
+}
+
+#exportCanvasSimple {
+    margin-left: 25px;
+}
