@@ -16,3 +16,7 @@ Création d'une to do list avec le framework Angular en équipe de 2.
 - Page de login redirection, probleme sur la fermeture de la fenetre dialog.
 - La synchronisation avec le firestore n'est pas assez optimisé.
 - Trop long pour créer une nouvelle todolist -> pb causé par le module emoji (à changer)
+
+## Commande utiles 
+- npm i
+- npm start
