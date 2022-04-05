@@ -1,4 +1,5 @@
 # Projet : To Do List Angular
+Création d'une to do list avec le framework Angular en équipe de 2. 
 
 ## Equipe
 - MAHI Riad
