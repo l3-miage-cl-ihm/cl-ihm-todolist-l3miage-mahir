@@ -1,4 +1,8 @@
-# Binome MAHI Riad et Jérôme GAMBIEZ
+# Projet : To Do List Angular
+
+## Equipe
+- MAHI Riad
+- GAMBIEZ Jérôme
 
 ## Fonctionnalités
 - Connection à la todolist via FirebaeAuth
