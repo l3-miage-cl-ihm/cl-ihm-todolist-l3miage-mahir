@@ -30,3 +30,10 @@ http://todolistapp-39f3b.web.app/
 - $ npm init
 - $ npm install --save firebase
 - $ npm start
+
+
+## Améliorations
+ - Utilisation de switchMap avec l'utilisation d'un observable qui prend l'utilisateur + une liste de todolist.
+ - Amélioration des performances (voir dans la console)
+ - Rendre réactive l'application au format mobile (fermeture de la sidebar)
+ - Générer une application téléchargeable.
