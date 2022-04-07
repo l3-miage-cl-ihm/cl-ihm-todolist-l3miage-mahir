@@ -1,12 +1,14 @@
 # Projet : To Do List Angular
 Création d'une to do list avec le framework Angular en équipe de 2. 
 
-## Lien vers la todolist
-http://todolistapp-39f3b.web.app/
+
 
 ## Equipe
 - MAHI Riad
 - GAMBIEZ Jérôme
+
+## Lien vers la todolist
+http://todolistapp-39f3b.web.app/
 
 ## Fonctionnalitées
 - Connection à la todolist via FirebaeAuth
