@@ -1,48 +1,70 @@
-{
-  "name": "todo-app",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~12.0.3",
-    "@angular/cdk": "^12.2.13",
-    "@angular/common": "~12.0.3",
-    "@angular/compiler": "~12.0.3",
-    "@angular/core": "~12.0.3",
-    "@angular/fire": "^7.3.0",
-    "@angular/forms": "~12.0.3",
-    "@angular/material": "^12.2.13",
-    "@angular/platform-browser": "~12.0.3",
-    "@angular/platform-browser-dynamic": "~12.0.3",
-    "@angular/router": "~12.0.3",
-    "@ctrl/ngx-emoji-mart": "^6.2.0",
-    "angularx-qrcode": "^13.0.8",
-    "firebase": "^9.6.10",
-    "ngx-emoji-picker": "^0.1.6",
-    "ngx-scrollbar": "^9.0.2",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.1.0",
-    "twemoji": "^14.0.1",
-    "zone.js": "~0.11.4"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "^13.3.1",
-    "@angular/cli": "~12.0.3",
-    "@angular/compiler-cli": "~12.0.3",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
-    "jasmine-core": "~3.7.0",
-    "karma": "~6.3.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.0.3",
-    "karma-jasmine": "~4.0.0",
-    "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "~4.2.3"
-  }
-}
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { TodolistComponent } from './components/todolist/todolist.component';
+import { CreateComponent } from './components/create/create.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import  {  NgxEmojiPickerModule  }  from  'ngx-emoji-picker';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTabsModule} from '@angular/material/tabs';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { DrawComponent } from './components/draw/draw.component';
+
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { QrcodeComponent } from './components/qrcode/qrcode.component';
+import { QRCodeModule } from 'angularx-qrcode';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    TodolistComponent,
+    CreateComponent,
+    TodoItemComponent,
+    EditProfileComponent,
+    SignInComponent,
+    DrawComponent,
+    QrcodeComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    NgxEmojiPickerModule,
+    MatProgressBarModule,
+    MatTabsModule,
+    FormsModule,
+    NgScrollbarModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    QRCodeModule
+
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
